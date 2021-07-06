@@ -19,9 +19,6 @@ namespace CaptchaSharp.Services
         /// <summary>The default <see cref="HttpClient"/> used for requests.</summary>
         private HttpClient httpClient;
 
-        /// <summary>The ID of the software developer.</summary>
-        public int AffiliateId { get; set; } = 671869;
-
         /// <summary>Initializes a <see cref="ImageTyperzService"/> using the given <paramref name="apiKey"/> and 
         /// <paramref name="httpClient"/>. If <paramref name="httpClient"/> is null, a default one will be created.</summary>
         public ImageTyperzService(string apiKey, HttpClient httpClient = null)
@@ -60,7 +57,7 @@ namespace CaptchaSharp.Services
         {
             var response = await httpClient.PostToStringAsync
                 ("Forms/UploadFileAndGetTextNEWToken.ashx",
-                GetAuthAffiliatePair()
+                GetAuthPair()
                 .Add("action", "UPLOADCAPTCHA")
                 .Add("file", base64)
                 .Add(ConvertCapabilities(options)),
@@ -81,7 +78,7 @@ namespace CaptchaSharp.Services
         {
             var response = await httpClient.PostToStringAsync
                 ("captchaapi/UploadRecaptchaToken.ashx",
-                GetAuthAffiliatePair()
+                GetAuthPair()
                 .Add("action", "UPLOADCAPTCHA")
                 .Add("pageurl", siteUrl)
                 .Add("googlekey", siteKey)
@@ -100,7 +97,7 @@ namespace CaptchaSharp.Services
         {
             var response = await httpClient.PostToStringAsync
                 ("captchaapi/UploadRecaptchaToken.ashx",
-                GetAuthAffiliatePair()
+                GetAuthPair()
                 .Add("action", "UPLOADCAPTCHA")
                 .Add("pageurl", siteUrl)
                 .Add("googlekey", siteKey)
@@ -121,7 +118,7 @@ namespace CaptchaSharp.Services
         {
             var response = await httpClient.PostToStringAsync
                 ("captchaapi/UploadRecaptchaToken.ashx",
-                GetAuthAffiliatePair()
+                GetAuthPair()
                 .Add("action", "UPLOADCAPTCHA")
                 .Add("pageurl", $"{siteUrl}--hcaptcha")
                 .Add("googlekey", $"{siteKey}--hcaptcha")
@@ -139,7 +136,7 @@ namespace CaptchaSharp.Services
         {
             var response = await httpClient.GetStringAsync
                 ("captchaapi/UploadGeeTestToken.ashx",
-                GetAuthAffiliatePair()
+                GetAuthPair()
                 .Add("action", "UPLOADCAPTCHA")
                 .Add("gt", gt)
                 .Add("challenge", challenge)
@@ -157,7 +154,7 @@ namespace CaptchaSharp.Services
         {
             var response = await httpClient.PostToStringAsync
                 ("captchaapi/UploadRecaptchaToken.ashx",
-                GetAuthAffiliatePair()
+                GetAuthPair()
                 .Add("action", "UPLOADCAPTCHA")
                 .Add("pageurl", $"{siteUrl}--capy")
                 .Add("googlekey", $"{siteKey}--capy")
@@ -254,9 +251,6 @@ namespace CaptchaSharp.Services
         #region Private Methods
         private StringPairCollection GetAuthPair() 
             => new StringPairCollection().Add("token", ApiKey);
-
-        private StringPairCollection GetAuthAffiliatePair()
-            => GetAuthPair().Add("affiliateid", AffiliateId);
 
         private bool IsError(string response) 
             => response.StartsWith("ERROR:");

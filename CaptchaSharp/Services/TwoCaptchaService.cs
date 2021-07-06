@@ -28,9 +28,6 @@ namespace CaptchaSharp.Services
         /// cross-domain AJAX requests in web applications.</summary>
         public bool AddACAOHeader { get; set; } = false;
 
-        /// <summary>The ID of the software developer.</summary>
-        public int SoftId { get; set; } = 2658;
-
         /// <summary>Initializes a <see cref="TwoCaptchaService"/> using the given <paramref name="apiKey"/> and 
         /// <paramref name="httpClient"/>. If <paramref name="httpClient"/> is null, a default one will be created.</summary>
         public TwoCaptchaService(string apiKey, HttpClient httpClient = null)
@@ -82,7 +79,6 @@ namespace CaptchaSharp.Services
                 new StringPairCollection()
                     .Add("key", ApiKey)
                     .Add("textcaptcha", text)
-                    .Add("soft_id", SoftId)
                     .Add("json", "1", UseJsonFlag)
                     .Add("header_acao", "1", AddACAOHeader)
                     .Add(ConvertCapabilities(options))
@@ -106,7 +102,6 @@ namespace CaptchaSharp.Services
                     .Add("key", ApiKey)
                     .Add("method", "base64")
                     .Add("body", base64)
-                    .Add("soft_id", SoftId)
                     .Add("json", "1", UseJsonFlag)
                     .Add("header_acao", "1", AddACAOHeader)
                     .Add(ConvertCapabilities(options))
@@ -132,7 +127,6 @@ namespace CaptchaSharp.Services
                     .Add("googlekey", siteKey)
                     .Add("pageurl", siteUrl)
                     .Add("invisible", Convert.ToInt32(invisible).ToString())
-                    .Add("soft_id", SoftId)
                     .Add("json", "1", UseJsonFlag)
                     .Add("header_acao", "1", AddACAOHeader)
                     .Add(ConvertProxy(proxy))
@@ -161,7 +155,6 @@ namespace CaptchaSharp.Services
                     .Add("pageurl", siteUrl)
                     .Add("action", action)
                     .Add("min_score", minScore.ToString("0.0", CultureInfo.InvariantCulture))
-                    .Add("soft_id", SoftId)
                     .Add("json", "1", UseJsonFlag)
                     .Add("header_acao", "1", AddACAOHeader)
                     .Add(ConvertProxy(proxy))
@@ -189,7 +182,6 @@ namespace CaptchaSharp.Services
                     .Add("surl", serviceUrl)
                     .Add("pageurl", siteUrl)
                     .Add("nojs", Convert.ToInt32(noJS).ToString())
-                    .Add("soft_id", SoftId)
                     .Add("json", "1", UseJsonFlag)
                     .Add("header_acao", "1", AddACAOHeader)
                     .Add(ConvertProxy(proxy))
@@ -214,7 +206,6 @@ namespace CaptchaSharp.Services
                     .Add("method", "hcaptcha")
                     .Add("sitekey", siteKey)
                     .Add("pageurl", siteUrl)
-                    .Add("soft_id", SoftId)
                     .Add("json", "1", UseJsonFlag)
                     .Add("header_acao", "1", AddACAOHeader)
                     .Add(ConvertProxy(proxy))
@@ -243,7 +234,6 @@ namespace CaptchaSharp.Services
                     .Add("s_s_c_web_server_sign", webServerSign1)
                     .Add("s_s_c_web_server_sign2", webServerSign2)
                     .Add("pageurl", siteUrl)
-                    .Add("soft_id", SoftId)
                     .Add("json", "1", UseJsonFlag)
                     .Add("header_acao", "1", AddACAOHeader)
                     .Add(ConvertProxy(proxy))
@@ -271,7 +261,6 @@ namespace CaptchaSharp.Services
                     .Add("challenge", challenge)
                     .Add("api_server", apiServer)
                     .Add("pageurl", siteUrl)
-                    .Add("soft_id", SoftId)
                     .Add("json", "1", UseJsonFlag)
                     .Add("header_acao", "1", AddACAOHeader)
                     .Add(ConvertProxy(proxy))

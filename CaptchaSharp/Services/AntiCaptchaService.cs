@@ -23,9 +23,6 @@ namespace CaptchaSharp.Services
         /// <summary>The default <see cref="HttpClient"/> used for requests.</summary>
         protected HttpClient httpClient;
 
-        /// <summary>The ID of the software developer.</summary>
-        public int SoftId { get; set; } = 934;
-
         /// <summary>Initializes a <see cref="AntiCaptchaService"/> using the given <paramref name="apiKey"/> and 
         /// <paramref name="httpClient"/>. If <paramref name="httpClient"/> is null, a default one will be created.</summary>
         public AntiCaptchaService(string apiKey, HttpClient httpClient = null)
@@ -65,7 +62,6 @@ namespace CaptchaSharp.Services
                     new CaptchaTaskRequest
                     {
                         ClientKey = ApiKey,
-                        SoftId = SoftId,
                         Task = new ImageCaptchaTask
                         {
                             Body = base64
@@ -364,8 +360,7 @@ namespace CaptchaSharp.Services
         {
             return new CaptchaTaskRequest
             {
-                ClientKey = ApiKey,
-                SoftId = SoftId
+                ClientKey = ApiKey
             };
         }
         #endregion
